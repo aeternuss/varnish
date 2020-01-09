@@ -4,6 +4,9 @@ ENV VARNISH_VERSION 5.2.1-1~stretch
 ENV MAGENTO_HOST 127.0.0.1
 ENV MAGENTO_PORT 80
 
+COPY docker-varnish-entrypoint /usr/local/bin/
+COPY varnish.vcl /etc/varnish/default.vcl
+
 RUN set -ex; \
 	fetchDeps=" \
 		dirmngr \
@@ -26,9 +29,7 @@ RUN set -ex; \
 
 WORKDIR /etc/varnish
 
-COPY docker-varnish-entrypoint /usr/local/bin/
-ENTRYPOINT ["docker-varnish-entrypoint"]
-
 EXPOSE 6081
-COPY varnish.vcl /etc/varnish/default.vcl
+
+ENTRYPOINT ["docker-varnish-entrypoint"]
 CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl"]

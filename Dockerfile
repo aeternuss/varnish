@@ -25,7 +25,7 @@ RUN set -ex; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	\
 	chmod +x /usr/local/bin/docker-varnish-entrypoint; \
-	sed -i -e "s/-a: 6081/-a: 8000/" /etc/default/varnish; \
+	sed -i -e "s/-a :6081/-a :8000/" /etc/default/varnish; \
 	\
 	rm -rf /var/lib/apt/lists/*
 

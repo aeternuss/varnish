@@ -25,7 +25,6 @@ RUN set -ex; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
 	\
 	chmod +x /usr/local/bin/docker-varnish-entrypoint; \
-	sed -i -e "s/-a :6081/-a :8000/" /etc/default/varnish; \
 	\
 	rm -rf /var/lib/apt/lists/*
 
@@ -35,4 +34,4 @@ EXPOSE 8000
 
 ENTRYPOINT ["docker-varnish-entrypoint"]
 COPY varnish.vcl /etc/varnish/default.vcl
-CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl"]
+CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-a", ":8000"]

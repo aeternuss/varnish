@@ -28,6 +28,6 @@ WORKDIR /etc/varnish
 COPY docker-varnish-entrypoint /usr/local/bin/
 ENTRYPOINT ["docker-varnish-entrypoint"]
 
-EXPOSE 80
+EXPOSE 6081
 COPY varnish.vcl /etc/varnish/default.vcl
 CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl"]

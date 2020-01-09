@@ -21,6 +21,7 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends varnish=$VARNISH_VERSION; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps; \
+	chmod +x docker-varnish-entrypoint; \
 	rm -rf /var/lib/apt/lists/*
 
 WORKDIR /etc/varnish

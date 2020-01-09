@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+
+# this will check if the first argument is a flag
+# but only works if all arguments require a hyphenated flag
+# -v; -SL; -f arg; etc will work, but not arg1 arg2
+if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]; then
+    set -- varnishd "$@"
+fi
+
+# magento host:port
+sed -i -e "s/MAGENTO_HOST/${MAGENTO_HOST}/" \
+       -e "s/MAGENTO_PORT/${MAGENTO_PORT}/" \
+    /etc/varnish/default.vcl
+
+exec "$@"

@@ -34,4 +34,4 @@ EXPOSE 8000
 
 ENTRYPOINT ["docker-varnish-entrypoint"]
 COPY varnish.vcl /etc/varnish/default.vcl
-CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-a", ":8000"]
+CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-a", ":8000", "-s", "malloc,256m"]

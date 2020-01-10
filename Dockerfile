@@ -35,4 +35,4 @@ WORKDIR /etc/varnish
 EXPOSE 8000
 
 ENTRYPOINT ["docker-varnish-entrypoint"]
-CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-a", ":8000", "-s", "malloc,256m"]
+CMD ["varnishd", "-F", "-f", "/etc/varnish/default.vcl", "-a", ":8000", "-s", "malloc,512m"]

@@ -14,4 +14,4 @@ sed -i -e "s/MAGENTO_HOST/${MAGENTO_HOST}/" \
        -e "s/MAGENTO_PORT/${MAGENTO_PORT}/" \
     /etc/varnish/default.vcl
 
-$@
+exec "$@"
